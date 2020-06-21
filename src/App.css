@@ -1,38 +1,35 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+.container{
+              display:grid;
+              grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+              min-height:100vh;
+              background: black;
+            }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+            main {
+              grid-column:1/7;
+              grid-row:2/5;
+              background: url('./images/Moon.jpg') no-repeat top;
+              background-size: cover;
+              padding: 5em 0 10em;
+              overflow: hidden;
+            }
+          h1 {  margin: 0;
+                font-size: 4rem;
+                mix-blend-mode: hard-light;
+                background-color:#332f2f;
+                color: #848383;
+                border-width: 0.1em 0;
+                text-align: center;
+            }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+         
+        
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+          
+    @media  only screen and  (max-width: 667px){
+      main {
+        padding: 10em 0 10em;
+      }
+    }
+     
