@@ -1,34 +1,8 @@
- import React,{useState} from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
+ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import RocketInfo from '../components/rocketInfo';
-import Loading from '../components/loading';
-import RocketCard from '../components/rocketCard';
 
-const Rockets_list = gql`
-  
-   {
-  rockets {
-    name
-    country
-    description
-    wikipedia
-    id
-    active
-  }
-
-  }
-`
 const useStyles = makeStyles(theme =>({
-root:{
-margin:' 0px auto',
-display: 'flex',
-flexWrap: 'wrap',
-background:'linear-gradient(to left,#465664,#0b0808 50%,#465664)',
-minHeight:'90vh',
-overflow:'hidden',
-},
+
   card: {
     display: 'flex',
   margin:' 15px 4%',
@@ -103,31 +77,24 @@ borderRadius: '5px',
 
 }))
 
-
-  const Rockets = () => {
+const RocketCard = (props) => {
         const styles = useStyles();
-        const [state,setState] = useState("");
-        
-        const openModal = (id) => () => setState(id);
-        const closeModal = () => setState("");
+  return ( <>
 
- const { loading, error, data } = useQuery(Rockets_list)
-   if (loading) return <Loading />;
-        if (error) return <p>Error :(</p>;
-
- return ( 
-  <div className={styles.root} >
-{ data.rockets.map(({ name,id,active}) => (
-                <RocketCard 
-                name={name}
-                id={id}
-                active={active}
-                key={id}
-                click={openModal(id)}
-                />
-       ))}
-    {state ?<RocketInfo id={state} close={closeModal}/> : null}
-      </div>)
+             <div className={styles.card}  onClick={ props.click} >      
+       <img src={require(`../images/${props.id}.png`)} alt={props.name}/>
+  <div className={styles.details} >
+   {props.active ? (
+         <span className={styles.active}>active</span>
+       ) :          <span className={styles.retired}>Passive</span>
 }
+       <span className={styles.name}>
+         {props.name}  
+       </span>
+    </div>
+       </div>
+       </>
+       )
+     }
 
-export default Rockets;
+export default RocketCard;

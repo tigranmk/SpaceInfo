@@ -39,7 +39,7 @@
   font-size: 1.5rem;
 }
 .open_button{
-  grid-column: 1/5;
+background:black;
 }
 svg.MuiSvgIcon-root {
 color: darkturquoise;

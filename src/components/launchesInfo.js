@@ -3,32 +3,24 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { makeStyles } from '@material-ui/core/styles';
 import {useSpring, animated} from 'react-spring';
-import Button from '@material-ui/core/Button';
+import Button from 'react-bootstrap/Button'
+const LAUNCH_INFO = gql `
 
-const Rocket_info = gql `
-
-query Rocket($id: ID!){
-  rocket(id:$id ) {
-        active
-    cost_per_launch
-    name
-    success_rate_pct
-    first_flight
-    description
-    height {
-      meters
+query Launch($id: ID!){
+  launch(id: $id) {
+    details
+    id
+    launch_success
+    launch_year
+    links {
+      flickr_images
+      wikipedia
+      video_link
     }
-    wikipedia
-    engines {
-      number
-      propellant_1
-      propellant_2
+    mission_name
+    rocket {
+      rocket_name
     }
-    mass {
-      kg
-    }
-  
-    
   }
   }
 `
@@ -38,7 +30,7 @@ const useStyles = makeStyles(theme =>({
 
    modal:{
   position: 'fixed', /* Stay in place */
-  zIndex: 1, /* Sit on top */
+  zIndex: 100, /* Sit on top */
   paddingTop: '20px',/* Location of the box */
   left: 0,
   top: 0,
@@ -50,6 +42,11 @@ const useStyles = makeStyles(theme =>({
     float:'left',
     textDecoration:'none',
     color:'black'
+  },
+  '& h4':{
+    fontSize:'1.125rem',
+    fontWeight:'Bolder',
+    fontFamily:'cursive'
   }
   },
   modal_content:{
@@ -68,6 +65,8 @@ const useStyles = makeStyles(theme =>({
 },
 modal_footer:{
   padding:' 50px 15px',
+  display:'flex',
+  justifyContent:'space-around',
   backgroundColor: '#333e33',
   color: 'white',
 },
@@ -85,9 +84,24 @@ modal_body:{
   padding: '2px 16px',
   display:'flex',
   flexWrap:'wrap',
+  fontWeight:'600',
+  fontFamily:'cursive',
+  '& p':{
+  width:'100%'
+}
 },
  modal_item:{
-  flex:'1 25%',
+  flex:'1 50%',
+ },
+ success:{
+  display: 'inline',
+border: 'green solid 8px',
+background: 'green',
+ },
+  failed:{
+  display: 'inline',
+border: 'red solid 8px',
+background: 'red',
  }
 
 
@@ -96,10 +110,10 @@ modal_body:{
 
 
 
-const Rocket = (props) => {
+const LaunchInfo = (props) => {
  const styles = useStyles();
  const animation = useSpring({to:{top:0, opacity:1},from:{top:'100px', opacity:0}, config: {duration:350 }})
- const { loading, error, data } = useQuery(Rocket_info, {
+ const { loading, error, data } = useQuery(LAUNCH_INFO, {
     variables:{id:props.id}
   }); 
         if (loading) return true;
@@ -110,48 +124,30 @@ const Rocket = (props) => {
                 <div className={styles.modal} >
                  <animated.div style={animation} className={styles.modal_content}>
                     <div className={styles.modal_header}>   
-                    <h2>{data.rocket.name}</h2>
+                    <h2>{data.launch.mission_name}</h2>
                     </div>    
                     <div className={styles.modal_body}>
-                    <p>{data.rocket.description}</p>
+                    <p>{data.launch.details}</p>
                     <div className={styles.modal_item}>
-                    <h4>Cost Per Luanch</h4>
-                    <p>{data.rocket.cost_per_launch}$</p>
-                    </div>
-                    <div className={styles.modal_item}>
-                    <h4>Success Rate</h4>
-                    <p>{data.rocket.success_rate_pct}%</p>
+                    <h4>Launch year</h4>
+                    <p>{data.launch.launch_year}</p>
                     </div>
                     <div className={styles.modal_item}>
-                    <h4>First Flight</h4>
-                    <p>{data.rocket.first_flight}</p>
-                    </div>
-                     <div className={styles.modal_item}>
-                    <h4> Mass</h4>
-                    <p>{data.rocket.mass.kg}</p>
-                    </div>
-                      <div className={styles.modal_item}>
-                    <h4> Engines</h4>
-                    <p>{data.rocket.engines.number}</p>
-                    </div>
-                      <div className={styles.modal_item}>
-                    <h4>Height </h4>
-                    <p>{data.rocket.height.meters}</p>
-                    </div>
-                      <div className={styles.modal_item}>
-                    <h4>first Propellant</h4>
-                    <p>{data.rocket.engines.propellant_1}</p>
-                    </div>
-                      <div className={styles.modal_item}>
-                    <h4>Second Propellant</h4>
-                    <p>{data.rocket.engines.propellant_2}</p>
-                    </div>
+                    <h4>Status</h4>
+                    {data.launch.launch_success ?<p className={styles.success}>Success</p> : <p className={styles.failed}>Failed</p>}
+                    </div>      
                     </div> 
                      <div className={styles.modal_footer}>
-         <Button variant="contained" color="secondary" className={styles.close} onClick={props.close} >
+         <Button variant="secondary" className={styles.close} onClick={props.close} >
                           CLOSE 
                           </Button>
-                 <Button  variant="contained"><a href={data.rocket.wikipedia}>more Info</a></Button>
+        <Button   variant="info"><a href={data.launch.links.wikipedia} target="_blank"  rel="noopener noreferrer">Information</a></Button>
+
+
+{
+   data.launch.links.video_link  && 
+       <Button variant="primary"><a href={data.launch.links.video_link} target="_blank"  rel="noopener noreferrer">Video</a></Button>
+}
 
           </div>
           </animated.div>
@@ -161,4 +157,4 @@ const Rocket = (props) => {
     
  
 }
-export default Rocket;
+export default LaunchInfo;

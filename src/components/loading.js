@@ -1,4 +1,3 @@
-import ReactDOM from 'react-dom'
 import React from 'react'
 import { useSpring, animated } from 'react-spring'
 import { makeStyles } from '@material-ui/core/styles'

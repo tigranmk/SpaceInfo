@@ -8,7 +8,7 @@ const stylesNav = makeStyles ({
 	root:{
 		      display:'flex',
 		      margin:0,
-              padding:'.5em',
+              padding:'.375em',
               backgroundColor:'#000',
               listStyleType:'none',
               justifyContent:' space-around',
@@ -54,8 +54,7 @@ const stylesNav = makeStyles ({
       <animated.ul className={classes.root} style={props}>
       <li><Link to="/rockets">Rockets</Link></li>
       <li><Link to="/launches">Launches</Link></li>
-      <li><Link to="/capsules">Capsules</Link></li>
-      <li><Link to="/missions">Missions</Link></li>
+      <li><Link to="/dragons">Dragons</Link></li>
           
        </animated.ul>
      </nav>
