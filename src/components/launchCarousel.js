@@ -14,7 +14,6 @@ const useStyles = makeStyles({
 		border: '10px solid #040000',
 		borderRadius: '10px',	
 		backgroundColor:'black',
-    height:'100vh',
 	
     }
 
