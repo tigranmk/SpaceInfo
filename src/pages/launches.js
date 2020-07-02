@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme=>({
     background:'linear-gradient(to left,#193248,#b3b2b2 50%,#193248)',
     },
     carousel:{
-        width:'30em',
+        width:'25em',
         margin:'0 auto',
         border: '10px solid #040000',
         borderRadius: '10px',

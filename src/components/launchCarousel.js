@@ -6,15 +6,15 @@ const useStyles = makeStyles({
  root:{
 '& h2':{
 		textAlign:'center',
-    height:'100vh',
 		}
  },
     carousel:{
-        width:'30em',
+        width:'25em',
         margin:'0 auto',
 		border: '10px solid #040000',
 		borderRadius: '10px',	
-		backgroundColor:'black'
+		backgroundColor:'black',
+    height:'100vh',
 	
     }
 
