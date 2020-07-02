@@ -45,6 +45,8 @@ const useStyles = makeStyles(theme=>({
          backgroundColor:'black',
          [theme.breakpoints.down('sm')]:{
     width: '100vw',
+        height:'100vh',
+
   }
 
     }
