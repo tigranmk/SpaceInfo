@@ -30,7 +30,7 @@ query Launch($limit:Int,$offset: Int,$order: String) {
 }
 
 `
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme=>({
 	root:{
 		maxWidth:'140em',
     height:'100vh',
@@ -50,7 +50,7 @@ const useStyles = makeStyles({
     }
 
 
-})
+}))
 
   const Launches = () =>{
    const styles = useStyles();
