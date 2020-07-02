@@ -33,7 +33,6 @@ query Launch($limit:Int,$offset: Int,$order: String) {
 const useStyles = makeStyles(theme=>({
 	root:{
 		maxWidth:'140em',
-    height:'100vh',
 
     background:'linear-gradient(to left,#193248,#b3b2b2 50%,#193248)',
     },
@@ -43,12 +42,6 @@ const useStyles = makeStyles(theme=>({
         border: '10px solid #040000',
         borderRadius: '10px',
          backgroundColor:'black',
-         [theme.breakpoints.down('sm')]:{
-    width: '100vw',
-        height:'100vh',
-
-  }
-
     }
 
 

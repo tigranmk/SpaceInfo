@@ -6,10 +6,11 @@ const useStyles = makeStyles({
  root:{
 '& h2':{
 		textAlign:'center',
+    height:'100vh',
 		}
  },
     carousel:{
-        width:'20em',
+        width:'30em',
         margin:'0 auto',
 		border: '10px solid #040000',
 		borderRadius: '10px',	
