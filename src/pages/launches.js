@@ -33,7 +33,7 @@ query Launch($limit:Int,$offset: Int,$order: String) {
 const useStyles = makeStyles({
 	root:{
 		maxWidth:'140em',
-    Height:'100vh',
+    height:'100vh',
 
     background:'linear-gradient(to left,#193248,#b3b2b2 50%,#193248)',
     },
