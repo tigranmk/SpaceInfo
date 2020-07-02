@@ -38,12 +38,14 @@ const useStyles = makeStyles({
     background:'linear-gradient(to left,#193248,#b3b2b2 50%,#193248)',
     },
     carousel:{
-        width:'20em',
+        width:'30em',
         margin:'0 auto',
         border: '10px solid #040000',
         borderRadius: '10px',
-            backgroundColor:'black'
-
+         backgroundColor:'black',
+         [theme.breakpoints.down('sm')]:{
+    width: '100vw',
+  }
 
     }
 
